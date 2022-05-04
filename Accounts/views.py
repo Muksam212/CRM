@@ -17,8 +17,9 @@ def registerPage(request):
 			Customer.objects.create(user = user, name = user.username)
 			return redirect('register')
 			messages.success(request,'Accounts was created' +username)
+	context = {'form':form}
 
-	return render(request,'accounts/register.html', context={'form':form})
+	return render(request,'accounts/register.html', context)
 
 def loginPage(request):
 	if request.method == "POST":
@@ -83,6 +84,7 @@ def order_update(request, pk):
 	return render(request,'accounts/order_form.html', context)
 
 
+#delete the order
 def order_delete(request, pk):
 	order = Order.objects.get(id = pk)
 	if request.method == "POST":
@@ -90,6 +92,3 @@ def order_delete(request, pk):
 		return redirect('/')
 	context = {'item':order}
 	return render(request,'accounts/delete_order.html', context)
-
-
-

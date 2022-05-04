@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+#decorators allows you to give permission to the user
 def allowed_users(allowed_roles=[]):
 	def decorator(view_func): #view func will be user page
 		def wrapper_func(request, *args, **kwargs):
